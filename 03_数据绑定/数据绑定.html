@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div class="test">
+        <!--普通写法-->
+        单向数据绑定：<input type="text" v-bind:value="name" /><br/>
+        双向数据绑定：<input type="text" v-model:value="name" /><br/>
+        <!--简写-->
+        单向数据绑定：<input type="text" :value="name" /><br/>
+        双向数据绑定：<input type="text" v-model="name" /><br/>
+
+        <!--以下写法是错误的，v-model只能用于表单类标签中(如input、select等)-->
+        <a v-model:href="name"></a>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el: '.test',
+            data: {
+                name: 'java'
+            }
+        })
+    </script>
+</body>
+</html>
