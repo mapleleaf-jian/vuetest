@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <p>hello, {{name}}</p>
+</div>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({ // 第一种写法
+        el: '#demo',
+        data: function() {
+            return {
+                name: 'java'
+            }
+        }
+    })
+    console.log(vm)
+</script>
+</body>
+</html>

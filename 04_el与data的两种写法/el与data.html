@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <p>hello, {{name}}</p>
+</div>
+<div id="we">
+    <p>hello, {{name}}</p>
+</div>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({ // 第一种写法
+        el: '#demo',
+        // data: {
+        //     name: 'john',
+        // }
+
+        data: function() {
+            return {
+                name: 'java'
+            }
+        }
+    })
+    const v = new Vue({
+        data: {
+            name: 'tom',
+        }
+    })
+    v.$mount('#we') // 第二种写法
+</script>
+</body>
+</html>
