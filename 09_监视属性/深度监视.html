@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>a的值是：{{numbers.a}}</h2>
+    <button @click="addA">点我使a+1</button>
+    <h2>b的值是：{{numbers.b}}</h2>
+    <button @click="addB">点我使b+1</button>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({
+        el: '#root',
+        data: {
+            numbers: {
+                a: 1,
+                b: 2
+            }
+        },
+        methods: {
+          addA() {
+              this.numbers.a++
+          } ,
+          addB() {
+              this.numbers.b++
+          }
+        },
+        watch: {
+            numbers: {
+                deep: true,
+                handler() {
+                    console.log("numbers改变了")
+                },
+                immediate: true
+            }
+        }
+    })
+</script>
+</body>
+</html>
