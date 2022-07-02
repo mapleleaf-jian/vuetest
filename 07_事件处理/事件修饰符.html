@@ -44,6 +44,10 @@
         <button @click.stop="showInfo">点击弹窗</button>
     </div>
 
+    <div class="demo1" @click="showInfo1">
+        <a href="https://www.baidu.com" @click.stop.prevent="showInfo">连用测试</a>
+    </div>
+
     <!--@click.once 事件只出现一次-->
     <button @click.once="showInfo">点击弹窗</button>
 
