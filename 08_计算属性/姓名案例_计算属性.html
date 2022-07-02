@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    姓：<input type="text" v-model="first"/><br/>
+    名：<input type="text" v-model="second"/><br/>
+    姓名：<span>{{fullName}}</span>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            first: 'zhang',
+            second: 'san'
+        },
+        computed: {
+            fullName: {
+                get() {
+                    console.log(this) // 此处的this指的是Vue实例，因此可以通过 this 去获取data中的属性
+                    return this.first + '-' + this.second
+                },
+                set(value) {
+                    let arr = value.split('-')
+                    this.first = arr[0]
+                    this.second = arr[1]
+                }
+            },
+            fullName() {
+                eturn this.first + '-' + this.second
+            }
+        }
+    })
+</script>
+</body>
+</html>
