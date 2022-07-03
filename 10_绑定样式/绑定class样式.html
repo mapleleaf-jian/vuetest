@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<style>
+    .basic {
+        width: 400px;
+        height: 100px;
+        border: 1px black solid;
+    }
+    .happy {
+        background-color: bisque;
+    }
+    .sad {
+        background-color: darkcyan;
+    }
+    .normal {
+        background-color: darksalmon;
+    }
+    .styleA {
+        background-color: cornflowerblue;
+    }
+    .styleB {
+        border-radius: 35px;
+    }
+    .styleC {
+        border: 5px black solid;
+    }
+</style>
+<div id="root">
+    <!--情况1: 绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定 -->
+    <div class="basic" :class="mood" @click="changeMood">{{name}}</div> <br/><br/>
+
+    <!--情况2: 绑定class样式--数组写法，适用于：要绑定的样式个数不确定，类名也不确定 -->
+    <div class="basic" :class="classArr">{{name}}</div> <br/><br/>
+
+    <!--情况3: 绑定class样式--对象写法，适用于：要绑定的样式个数确定、名字也确定，但要动态决定用不用 -->
+    <div class="basic" :class="classObj">{{name}}</div> <br/><br/>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'java',
+            mood: 'happy', // 指定情况1的样式初始值
+            classArr: ['styleA', 'styleB', 'styleC'], //指定情况2可以被应用的样式数组，具体应用哪些在页面指定
+            classObj: {
+                styleA: false,
+                styleB: false
+            }
+        },
+        methods: {
+            changeMood() {
+                let moodArr = ['happy', 'sad', 'normal']
+                let index = Math.floor(Math.random() * 3) // 随机数值
+                this.mood = moodArr[index]
+            }
+        }
+    })
+</script>
+</body>
+</html>
