@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <!--提交表单的时候执行check方法，并使用prevent事件修饰符阻止默认行为(跳转页面)-->
+    <form @submit.prevent="check">
+        <!--去掉首尾的空白字符-->
+        账号：<input type="text" v-model.trim="userInfo.account"> <br/><br/>
+        密码：<input type="password" v-model="userInfo.password"> <br/><br/>
+        <!--限制输入为数字，type和v-model.number一般配合使用-->
+        年龄：<input type="number" v-model.number="userInfo.age"> <br/><br/>
+        性别：<input type="radio" v-model="userInfo.sex" value="male">男
+             <input type="radio" v-model="userInfo.sex" value="female">女<br/><br/>
+        爱好：<input type="checkbox" value="football" v-model="userInfo.hobby">football
+             <input type="checkbox" value="bike" v-model="userInfo.hobby">bike
+             <input type="checkbox" value="car" v-model="userInfo.hobby">car<br/><br/>
+        城市：<select v-model="userInfo.city">
+                <option value="">请选择</option>
+                <option value="beijing" >北京</option>
+                <option value="nanjing" >南京</option>
+             </select><br/><br/>
+        <!--延迟加载，在失去焦点后，才更新值-->
+        其他信息：<textarea v-model.lazy="userInfo.other"></textarea><br/><br/>
+        <input type="checkbox" v-model="userInfo.agree">已阅读<a href="http://www.baidu.com">协议</a><br/><br/>
+        <button>提交</button>
+    </form>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            userInfo: {
+                account: '',
+                password: '',
+                age: '',
+                sex: '',
+                hobby: [],
+                city: '',
+                other: '',
+                agree: ''
+            }
+        },
+        methods: {
+            check() {
+                console.log(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+</body>
+</html>
