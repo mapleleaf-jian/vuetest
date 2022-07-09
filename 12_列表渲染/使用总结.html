@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>学生信息</h2>
+    <button @click="addSex">点击添加性别属性，默认男</button><br/><br/>
+    <button @click="student.sex = '未知'">修改性别</button><br/><br/>
+    <button @click="addFriendFirst">在列表首位添加一个朋友</button><br/><br/>
+    <button @click="changeName">修改第一个朋友名字为zhang</button><br/><br/>
+    <button @click="addHobbyFirst">添加一个爱好</button><br/><br/>
+    <button @click="changeHobby">修改第一个爱好为car</button><br/><br/>
+    <h3>姓名：{{student.name}}</h3>
+    <h3>年龄：{{student.age}}</h3>
+    <h3 v-show="student.sex">性别：{{student.sex}}</h3>
+    <h3>朋友们</h3>
+    <ul>
+        <li v-for="(f, index) of student.friends" :key="index">
+            {{f.name}}-{{f.age}}
+        </li>
+    </ul>
+    <h3>爱好</h3>
+    <ul>
+        <li v-for="(h, index) of student.hobby" :key="index">
+            {{h}}
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            student: {
+                name: 'tom',
+                age: 18,
+                hobby: ['football', 'bike'],
+                friends: [
+                    {name: 'tony', age: 15},
+                    {name: 'joe', age: 16}
+                ]
+            }
+        },
+        methods: {
+            addSex() {
+                Vue.set(this.student, 'sex', '男')
+            },
+            addFriendFirst() {
+                this.student.friends.unshift({name: 'soe', age: 20})
+            },
+            changeName() {
+                this.student.friends[0].name = 'zhang'
+            },
+            addHobbyFirst() {
+                this.student.hobby.unshift('tenis')
+            },
+            changeHobby() {
+                this.student.hobby.splice(0, 1, 'car')
+            }
+        }
+    })
+</script>
+</body>
+</html>
