@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <!--计算属性实现-->
+    <h3>时间是(计算属性): {{fmtTime}}</h3>
+    <!--方法实现-->
+    <h3>时间是(方法): {{getFmtTime()}}</h3>
+    <!--局部过滤器实现-->
+    <h3>时间是(局部过滤器): {{time | timeFormater}}</h3>
+    <!--全局过滤器实现-->
+    <h3>时间是(全局过滤器): {{time | timeFormater2}}</h3>
+    <!--过滤器传递参数-->
+    <h3>时间是(过滤器传参): {{time | timeFormater3('YYYY年MM月DD日')}}</h3>
+    <!--过滤器串联-->
+    <h3>时间是(过滤器串联): {{time | timeFormater3('YYYY/MM/DD') | mySlice}}</h3>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    // 全局过滤器
+    Vue.filter('timeFormater2', function(value) {
+        return dayjs(value).format('YYYY-MM-DD')
+    })
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            time: 1657447635511
+        },
+        computed: {
+            fmtTime() {
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        methods: {
+            getFmtTime() {
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        // 局部过滤器，只允许当前Vue实例使用
+        filters: {
+            timeFormater(value) {
+                return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+            },
+            timeFormater3(value, str) {
+                return dayjs(value).format(str)
+            },
+            mySlice(value) {
+                return value.slice(0, 7)
+            }
+        }
+    })
+</script>
+</body>
+</html>
