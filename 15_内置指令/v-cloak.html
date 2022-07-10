@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <Style>
+        [v-cloak] {
+            display: none;
+        }
+    </Style>
+</head>
+<body>
+    <div id="root">
+        <p v-cloak>{{name}}</p>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'vue'
+        }
+    })
+</script>
+</html>
