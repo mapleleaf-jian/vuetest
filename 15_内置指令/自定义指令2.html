@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-fbind="num">
+      <button @click="num++">点击num++</button>
+    </div>
+    <script type="text/javascript">
+      Vue.config.productionTip = false
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          num: 1
+        },
+        directives: {
+          fbind: {
+            bind(element, binding) {
+              element.value = binding.value
+            },
+            inserted(element, binding) {
+              element.focus()
+            },
+            update(element, binding) {
+              element.value = binding.value
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
