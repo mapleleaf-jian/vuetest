@@ -10,10 +10,15 @@
       <h3>{{name}}</h3>
       <h3>当前num值为：{{num}}</h3>
       <h3>num放大10倍后为：<span v-big="num"></span></h3>
+      <h3>num放大10倍后为：<span v-big1="num"></span></h3>
+      <h3>num放大10倍后为：<span v-big-number="num"></span></h3>
       <button @click="num++">点击num++</button>
     </div>
     <script type="text/javascript">
       Vue.config.productionTip = false
+      Vue.directive('big1', function(element, binding){
+        element.innerText = binding.value * 10
+      })
       const vm = new Vue({
         el: '#root',
         data: {
@@ -22,6 +27,9 @@
         },
         directives: {
           big(element, binding) {
+            element.innerText = binding.value * 10
+          },
+          'big-number': function(element, binding) {
             element.innerText = binding.value * 10
           }
         }
