@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // 创建student组件
+        const student = {
+            template: `
+                <div>
+                  <h3>学生年龄：{{age}}</h3>
+                </div>
+            `,
+            data() {
+                return {
+                    age: 18
+                }
+            }
+        }
+        // 创建school组件
+        const school = {
+            template: `
+                <div>
+                  <h3>学校地址：{{address}}</h3>
+                  <student></student>
+                </div>
+            `,
+            data() {
+                return {
+                    address: 'beijing'
+                }
+            },
+            components: {
+                student
+            }
+        }
+        // 创建hello组件
+        const hello = {
+            template: `
+                <div>
+                  <h3>欢迎</h3>
+                </div>
+            `,
+        }
+        //创建app组件
+        const app = {
+            template: `
+                <div>
+                  <hello></hello>
+                  <school></school>
+                </div>
+            `,
+            components: {
+                hello,
+                school
+            }
+        }
+        new Vue({
+            template: `<app></app>`,
+            el: '#root',
+            components: {
+                app
+            }
+        })
+    </script>
+</body>
+</html>
