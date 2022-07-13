@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <student></student>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const student = Vue.extend({
+            name: 'child', // 设置Vue开发者工具中的名字
+            template: `
+                <div>
+                  <h3>姓名：{{name}}</h3>
+                  <h3>年龄：{{age}}</h3>
+                </div>
+              `,
+            data() {
+                return {
+                    name: 'john',
+                    age: 8
+                }
+            }
+        })
+        new Vue({
+            el: '#root',
+            components: {
+                student
+            }
+        })
+    </script>
+</body>
+</html>
